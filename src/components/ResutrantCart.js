@@ -1,5 +1,5 @@
 
-import {IMG_CDN_URL} from "../../Config"
+import {IMG_CDN_URL} from "../../utils/constant";
 
 
 const ResutrantCart = ({ name, cloudinaryImageId, cuisines, avgRating }) => {

@@ -68,7 +68,10 @@
 .search-container input:focus {
     border-color: #ff6347;
 }
-
+.Search-btn{
+    margin: 15px;
+    padding: 10px;
+}
 /* Restaurant Card */
 .card {
     border: 1px solid rgb(200, 200, 200);

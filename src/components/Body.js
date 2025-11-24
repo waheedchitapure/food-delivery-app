@@ -1,40 +1,45 @@
 import React from 'react';
 import { useState } from 'react';
-import { restaurantList } from "../../Config";
+import {restaurantList} from "../../utils/constant";
 import ResutrantCart from "./ResutrantCart";
 
 
-// const BurgerKing ={
-
-//   cuisines : ["Burger , American"],
-//   rating : "4.5 star",
-// }
-
 const Body = () => {
-
-    const [SearchText , setSearchText ] = useState("");
+ 
+  const [ listOfRestaurant , SetListOfReataurant ] = useState(restaurantList);
 
   return (
     <>
       <div className="Serach-conatiner">
-        <input type="text" value={SearchText}  onChange={(e) => setSearchText(e.target.value)} className="Search-input" />
+        <input type="text" className="Search-input" />
       </div>
 
-      
+   
         <button className="Search-btn">
-            Search {SearchText}
+            Search
         </button>
-      
-      <div className="bodyCard">
-        {restaurantList.map((restaurant) => {
-          return (
-            <ResutrantCart key={restaurant.info.id} {...restaurant.info} />
+
+        <button className='Search-btn'  
+        onClick={ () => {
+          const filteredLis = listOfRestaurant.filter(
+            (res) => res.info.avgRating > 4.5
           );
-        })}
+          SetListOfReataurant(filteredLis)
+        }}
+          
+          
+        >
+
+          Top Rated Restaurant
+        </button>
+       <div className="bodyCard">
+        {listOfRestaurant.map((restaurant) => (
+          <ResutrantCart key={restaurant.info.id} {...restaurant.info} />
+        ))}
       </div>
     </>
   );
 };
 
 export default Body;
-   
+    

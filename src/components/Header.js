@@ -1,16 +1,4 @@
-
-export const Title = () => {
-    return (
-      <>
-        <img
-          src="https://foodvilla.ng/wp-content/uploads/2020/12/FOOD_VILLA-removebg-preview.png"
-          alt="LOGO"
-          className="logo"
-        />
-      </>
-    );
-  };
-  
+import Title from "./Title";
 
 
 
