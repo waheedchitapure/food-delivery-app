@@ -8,11 +8,22 @@ const Body = () => {
  
   const [ listOfRestaurant , SetListOfReataurant ] = useState(restaurantList);
 
+  const [title , setTitile ] =useState("Hi");
+
   return (
     <>
       <div className="Serach-conatiner">
         <input type="text" className="Search-input" />
+        
       </div>
+      
+          <h1>{title}</h1>
+      
+
+      <button onClick={()=>   setTitile( (pre) => pre === "Hi"? "New food App" : "Hi" )}>
+
+      Titile Changed
+      </button>
 
    
         <button className="Search-btn">
