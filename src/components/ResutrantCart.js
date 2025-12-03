@@ -8,7 +8,7 @@ const ResutrantCart = ({ name, cloudinaryImageId, cuisines, avgRating }) => {
       <img src= { IMG_CDN_URL  + cloudinaryImageId }  alt="Restaurant"/>
  
       <h2> {name} </h2>
-      <h3>{cuisines.join(" , ")}</h3>
+      <h3>{cuisines?.join(" , ")}</h3>
       <h4>{avgRating}</h4>
     </div>
   );
