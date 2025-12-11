@@ -2,80 +2,106 @@ import React from "react";
 import { useState } from "react";
 import { restaurantList } from "../../utils/constant";
 import ResutrantCart from "./ResutrantCart";
-import { useEffect }  from "react";
+import { useEffect } from "react";
+
+import { SWIGGY_API } from "../../utils/constant";
 
 const Body = () => {
-  const [listOfRestaurant, SetListOfReataurant] = useState(restaurantList);
+  const [listOfRestaurant, setListOfReataurant] = useState([]);
+  const [filteredResturants, setFilteredResturants] = useState([]);
 
-  const [title, setTitle] = useState("Hi");
+  const [searchText, setSearchText] = useState("");
 
-  const [Searchtitle, setSearchtitle] = useState("This is live dynamic ");
+  // const [title, setTitle] = useState("Hi");
+  // const [Searchtitle, setSearchtitle] = useState("This is live dynamic ");
 
+  useEffect(() => {
+    getresturants();
+  }, []);
 
-  useEffect(()=>{
-
-getresturants();
-
-
-  },[]);
-
-
-  async function getresturants() {
-
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9046136&lng=77.614948&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+  const getresturants = async () => {
+    const data = await fetch(SWIGGY_API);
 
     const json = await data.json();
 
     console.log(json);
 
-    SetListOfReataurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-  }
+    setListOfReataurant(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredResturants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
+  console.log(
+    "Body is render If  i write anything in search every time body is render"
+  );
 
-  return (
+  return  filteredResturants.length === 0 ? <h1>Loading....</h1> : (
     <>
-      <div className="Serach-conatiner">
-        <input type="text" className="Search-input" />
+      <div className="seacr-conatiner">
+        <input
+          type="text"
+          value={searchText}
+          placeholder="Search..."
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        <button
+          className="Search-btn"
+          onClick={() => {
+            const filteredList = listOfRestaurant.filter((res) =>
+              res.info.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            console.log(filteredList);
+            setFilteredResturants(filteredList);
+          }}
+        >
+          Search
+        </button>
       </div>
 
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1>
 
       <h2>{Searchtitle}</h2>
-       <input
+      <input
         type="text"
         className="Search-tetx-update-live"
         placeholder="Type something..."
-        onChange={(e)=>setSearchtitle(e.target.value) }
+        onChange={(e) => setSearchtitle(e.target.value)}
       />
 
       <button
         onClick={() =>
-          setTitle((pre) => (pre === "Hi" ? "New Title Aaa gaya" : "Hi" ))
+          setTitle((pre) => (pre === "Hi" ? "New Title Aaa gaya" : "Hi"))
         }
       >
         Title Changes
-      </button>
+      </button> */}
 
-     
-
-      <button className="Search-btn">Search</button>
-
-      <button
+      {/* <button
         className="Search-btn"
         onClick={() => {
-          const filteredLis = listOfRestaurant.filter(
+          const filteredLis = filteredResturants.filter(
             (res) => res.info.avgRating > 4.5
           );
-          SetListOfReataurant(filteredLis);
+          setFilteredResturants(filteredLis);
         }}
       >
         Top Rated Restaurant
-      </button>
+      </button> */}
       <div className="bodyCard">
-        {listOfRestaurant.map((restaurant) => (
+        {filteredResturants.map((restaurant) => (
           <ResutrantCart key={restaurant?.info?.id} {...restaurant.info} />
-        ))}
+          
+        ))
+        }
+        {console.log("filteredResturants MAP wala all cards show karn keliye ")}
+        {console.log(filteredResturants)}
+        
       </div>
+      
     </>
   );
 };
