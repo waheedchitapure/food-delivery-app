@@ -4,11 +4,6 @@ export const LOGO_IMG = "https://foodvilla.ng/wp-content/uploads/2020/12/FOOD_VI
 
 export const SWIGGY_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9046136&lng=77.614948&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
-
-export const MENU_API_URL = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
-
-
-
 export const restaurantList = [
     {
       info: {

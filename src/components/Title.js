@@ -3,11 +3,13 @@ import {LOGO_IMG} from "../../utils/constant";
 const Title = ()=>{
  return (
       <>
-        <img
+        {/* <img
           src={LOGO_IMG}
           alt="LOGO"
           className="logo"
-        />
+        /> */}
+
+        <h2>Logo</h2>
       </>
     );
 }

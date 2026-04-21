@@ -52,6 +52,9 @@
     max-width: 600px;
     margin: 20px auto;
     text-align: center;
+      display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-container input {
@@ -69,6 +72,7 @@
     border-color: #ff6347;
 }
 .Search-btn{
+    white-space: nowrap;
     margin: 15px;
     padding: 10px;
 }
@@ -146,4 +150,37 @@
 .footer-copyright {
     font-size: 14px;
     color: #ccc;
+}
+
+.restaurant-card{
+    text-decoration: none;
+}
+.card-image{
+        width: -webkit-fill-available;
+}
+
+.shimmer-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+     column-gap: 20px;
+    row-gap: 20px;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.shimmer-cards{
+ 
+    width: 250px;
+    height: 180px;
+    padding: 15px;
+    background-color: #f0f0f0;
+      border-radius: 8px;
+}
+
+.login-button{
+        width: 100px;
+        height: 50px;
+        cursor:pointer; 
+    
 }
