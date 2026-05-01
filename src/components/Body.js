@@ -5,10 +5,15 @@ import ResutrantCart from "./ResutrantCart";
 import { useEffect } from "react";
 import Shimmer from "./Shimmer";
 
+import useOnline from "../../utils/useOnline";
+
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const onlineStatus = useOnline()
+  
 
   useEffect(() => {
     getRestaurants();
@@ -30,6 +35,7 @@ const Body = () => {
     );
   };
 
+if(onlineStatus === false ) return <h1> Look's like you are Offline !!!!......Pleas check your Internt connection </h1>
   return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
